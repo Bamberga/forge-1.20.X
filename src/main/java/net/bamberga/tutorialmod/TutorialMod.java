@@ -1,6 +1,8 @@
 package net.bamberga.tutorialmod;
 
 import com.mojang.logging.LogUtils;
+import net.bamberga.tutorialmod.block.ModBlocks;
+import net.bamberga.tutorialmod.item.ModCreativeModTabs;
 import net.bamberga.tutorialmod.item.ModItemClass;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -35,6 +37,10 @@ ModItemClass.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
+        ModCreativeModTabs.register(modEventBus);
+
+        ModBlocks.register(modEventBus);
+
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -55,6 +61,7 @@ ModItemClass.register(modEventBus);
     {
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
             event.accept(ModItemClass.SAPPHIRE);
+            event.accept(ModItemClass.RAW_SAPPHIRE);
         }
     }
 
